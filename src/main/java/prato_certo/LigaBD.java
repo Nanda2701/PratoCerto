@@ -21,11 +21,11 @@ public class LigaBD {
         
         try{
             
-            Connection conn = DriverManager.getConnection(URL, USER, PWD);
+            Connection pratocerto = DriverManager.getConnection(URL, USER, PWD);
             
             System.out.println("Conexão estabelecido com sucesso!");
             
-            return conn;
+            return pratocerto;
             
         }catch(SQLException e){
             
