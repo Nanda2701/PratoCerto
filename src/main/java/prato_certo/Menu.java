@@ -11,12 +11,14 @@ package prato_certo;
 public class Menu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Menu.class.getName());
-
+    public static String pedidoCliente = "";
+    public static double valorTotal = 0.0;
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
+        
     }
 
     /**
@@ -54,18 +56,26 @@ public class Menu extends javax.swing.JFrame {
         jMenu10 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
         jPopupMenu3 = new javax.swing.JPopupMenu();
+        Buttonpaga = new javax.swing.JButton();
+        Buttondele = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Textresumo = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu12 = new javax.swing.JMenu();
         jMenucarda = new javax.swing.JMenu();
         CheckBoxstrogo = new javax.swing.JCheckBoxMenuItem();
         CheckBoxbaca = new javax.swing.JCheckBoxMenuItem();
         CheckBoxsopa = new javax.swing.JCheckBoxMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
+        Checkbatapalha = new javax.swing.JCheckBoxMenuItem();
         CheckBoxextra = new javax.swing.JCheckBoxMenuItem();
         CheckBoxbata = new javax.swing.JCheckBoxMenuItem();
         CheckBoxsala = new javax.swing.JCheckBoxMenuItem();
-        jMenufinali = new javax.swing.JMenu();
+        jMenu12 = new javax.swing.JMenu();
+        CheckBoxcoca = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxagua = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxguarana = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxpedras = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxnenhu = new javax.swing.JCheckBoxMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -120,49 +130,82 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu12.setText("Cliente");
-        jMenuBar1.add(jMenu12);
+        Buttonpaga.setBackground(new java.awt.Color(153, 255, 153));
+        Buttonpaga.setText("Pagar");
+        Buttonpaga.addActionListener(this::ButtonpagaActionPerformed);
 
+        Buttondele.setBackground(new java.awt.Color(255, 102, 102));
+        Buttondele.setText("Deletar pedido");
+        Buttondele.addActionListener(this::ButtondeleActionPerformed);
+
+        Textresumo.setBackground(new java.awt.Color(255, 255, 204));
+        Textresumo.setColumns(20);
+        Textresumo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Textresumo.setRows(2);
+        jScrollPane1.setViewportView(Textresumo);
+
+        jMenuBar1.setBackground(new java.awt.Color(51, 51, 255));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+
+        jMenucarda.setBackground(new java.awt.Color(204, 255, 204));
         jMenucarda.setText("Cardapio");
 
-        CheckBoxstrogo.setSelected(true);
         CheckBoxstrogo.setText("Strogonoff");
         CheckBoxstrogo.addActionListener(this::CheckBoxstrogoActionPerformed);
         jMenucarda.add(CheckBoxstrogo);
 
-        CheckBoxbaca.setSelected(true);
         CheckBoxbaca.setText("Bacalhau");
+        CheckBoxbaca.addActionListener(this::CheckBoxbacaActionPerformed);
         jMenucarda.add(CheckBoxbaca);
 
-        CheckBoxsopa.setSelected(true);
         CheckBoxsopa.setText("Sopa");
+        CheckBoxsopa.addActionListener(this::CheckBoxsopaActionPerformed);
         jMenucarda.add(CheckBoxsopa);
 
         jMenuBar1.add(jMenucarda);
 
+        jMenu4.setBackground(new java.awt.Color(204, 204, 255));
         jMenu4.setText("Adicionar");
 
-        jCheckBoxMenuItem5.setSelected(true);
-        jCheckBoxMenuItem5.setText("Batata palha");
-        jMenu4.add(jCheckBoxMenuItem5);
+        Checkbatapalha.setText("Batata palha");
+        Checkbatapalha.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        Checkbatapalha.addActionListener(this::CheckbatapalhaActionPerformed);
+        jMenu4.add(Checkbatapalha);
 
-        CheckBoxextra.setSelected(true);
         CheckBoxextra.setText("Arroz Extra");
         CheckBoxextra.addActionListener(this::CheckBoxextraActionPerformed);
         jMenu4.add(CheckBoxextra);
 
-        CheckBoxbata.setSelected(true);
         CheckBoxbata.setText("Batata");
+        CheckBoxbata.addActionListener(this::CheckBoxbataActionPerformed);
         jMenu4.add(CheckBoxbata);
 
-        CheckBoxsala.setSelected(true);
         CheckBoxsala.setText("Salada");
+        CheckBoxsala.addActionListener(this::CheckBoxsalaActionPerformed);
         jMenu4.add(CheckBoxsala);
 
         jMenuBar1.add(jMenu4);
 
-        jMenufinali.setText("Finalizar");
-        jMenuBar1.add(jMenufinali);
+        jMenu12.setBackground(new java.awt.Color(255, 204, 255));
+        jMenu12.setText("Bebidas");
+
+        CheckBoxcoca.setText("Coca-cola");
+        CheckBoxcoca.addActionListener(this::CheckBoxcocaActionPerformed);
+        jMenu12.add(CheckBoxcoca);
+
+        CheckBoxagua.setText("Água");
+        jMenu12.add(CheckBoxagua);
+
+        CheckBoxguarana.setText("Guaraná");
+        jMenu12.add(CheckBoxguarana);
+
+        CheckBoxpedras.setText("Água das Pedras Limao");
+        jMenu12.add(CheckBoxpedras);
+
+        CheckBoxnenhu.setText("Nenhum");
+        jMenu12.add(CheckBoxnenhu);
+
+        jMenuBar1.add(jMenu12);
 
         setJMenuBar(jMenuBar1);
 
@@ -170,23 +213,220 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 377, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(Buttonpaga, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Buttondele)
+                .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Buttonpaga, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Buttondele, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void CheckBoxstrogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxstrogoActionPerformed
-        // TODO add your handling code here:
+                                                  
+    if (CheckBoxstrogo.isSelected()) {
+        // O cliente marcou o prato
+        pedidoCliente += "Strogonoff\n";
+        valorTotal += 12.00;
+        javax.swing.JOptionPane.showMessageDialog(this, "Strogonoff adicionado ao pedido!");
+    } else {
+        // O cliente desmarcou o prato (subtrai o valor)
+        valorTotal -= 12.00;
+        javax.swing.JOptionPane.showMessageDialog(this, "Strogonoff removido do pedido.");
+    }
     }//GEN-LAST:event_CheckBoxstrogoActionPerformed
 
     private void CheckBoxextraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxextraActionPerformed
-        // TODO add your handling code here:
+
+    if (CheckBoxextra.isSelected()) {
+         pedidoCliente += "Arroz Extra\n";
+        valorTotal += 4.00;
+        javax.swing.JOptionPane.showMessageDialog(this, "Arroz Extra adicionado ao pedido!");
+    } else {
+        // O cliente desmarcou o prato
+        javax.swing.JOptionPane.showMessageDialog(this, "Arroz Extra removido do pedido.");
+    }
+    // TODO add your handling code here:
     }//GEN-LAST:event_CheckBoxextraActionPerformed
+
+    private void CheckBoxbacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxbacaActionPerformed
+    
+    if (CheckBoxbaca.isSelected()) {
+       pedidoCliente += "Bacalhau\n";
+       valorTotal += 15.00; 
+        javax.swing.JOptionPane.showMessageDialog(this, "Bacalhau adicionado ao pedido!");
+    } else {
+       
+        javax.swing.JOptionPane.showMessageDialog(this, "Bacalhau removido do pedido.");
+    }
+
+    // TODO add your handling code here:
+    }//GEN-LAST:event_CheckBoxbacaActionPerformed
+
+    private void CheckBoxsopaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxsopaActionPerformed
+        // TODO add your handling code here:
+    if (CheckBoxsopa.isSelected()) {
+      pedidoCliente += "Sopa\n";
+      valorTotal += 2.00; 
+        javax.swing.JOptionPane.showMessageDialog(this, "Sopa adicionado ao pedido!");
+    } else {
+       
+        javax.swing.JOptionPane.showMessageDialog(this, "Sopa removido do pedido.");
+    }    
+    }//GEN-LAST:event_CheckBoxsopaActionPerformed
+
+    private void CheckbatapalhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckbatapalhaActionPerformed
+     
+    if (Checkbatapalha.isSelected()) {
+      pedidoCliente += "Batata Palha\n";
+      valorTotal += 1.00; 
+        javax.swing.JOptionPane.showMessageDialog(this, " Batata Palha adicionado ao pedido!");
+    } else {
+       
+        javax.swing.JOptionPane.showMessageDialog(this, "Batata Palha removido do pedido.");
+    }    
+    // TODO add your handling code here:
+    }//GEN-LAST:event_CheckbatapalhaActionPerformed
+
+    private void CheckBoxbataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxbataActionPerformed
+     
+    if (CheckBoxbata.isSelected()) {
+      pedidoCliente += "Batata\n";
+      valorTotal += 6.00;
+        javax.swing.JOptionPane.showMessageDialog(this, " Batata adicionado ao pedido!");
+    } else {
+       
+        javax.swing.JOptionPane.showMessageDialog(this, "Batata removido do pedido.");
+    } 
+    // TODO add your handling code here:
+    }//GEN-LAST:event_CheckBoxbataActionPerformed
+
+    private void CheckBoxsalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxsalaActionPerformed
+     
+    if (CheckBoxsala.isSelected()) {
+      pedidoCliente += "Salada\n";
+      valorTotal += 3.00;
+        javax.swing.JOptionPane.showMessageDialog(this, " Salada adicionado ao pedido!");
+    } else {
+       
+        javax.swing.JOptionPane.showMessageDialog(this, "Salada removido do pedido.");
+    } 
+    // TODO add your handling code here:
+    }//GEN-LAST:event_CheckBoxsalaActionPerformed
+
+    private void ButtondeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtondeleActionPerformed
+        int confirmacao = javax.swing.JOptionPane.showConfirmDialog(
+        this, 
+        "Tem a certeza de que deseja limpar o seu pedido?",
+        "Cancelar Pedido",
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+
+    if (confirmacao == javax.swing.JOptionPane.YES_OPTION) {
+        CheckBoxstrogo.setSelected(false);
+        CheckBoxbaca.setSelected(false);
+        CheckBoxsopa.setSelected(false);
+
+        Checkbatapalha.setSelected(false);
+        CheckBoxextra.setSelected(false);
+        CheckBoxbata.setSelected(false);
+        CheckBoxsala.setSelected(false);
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Pedido cancelado com sucesso.");
+    }
+     Textresumo.setText("");
+    // TODO add your handling code here:
+    }//GEN-LAST:event_ButtondeleActionPerformed
+
+    private void ButtonpagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonpagaActionPerformed
+    StringBuilder resumoPedido = new StringBuilder();
+    double total = 0.0;
+
+    if (CheckBoxstrogo.isSelected()) {
+        resumoPedido.append("- Strogonoff (12.00 €)\n");
+        total += 12.00;
+    }
+    if (CheckBoxbaca.isSelected()) {
+        resumoPedido.append("- Bacalhau (15.00 €)\n");
+        total += 15.00;
+    }
+    if (CheckBoxsopa.isSelected()) {
+        resumoPedido.append("- Sopa (2.00 €)\n");
+        total += 2.00;
+    }
+
+    if (Checkbatapalha.isSelected()) {
+        resumoPedido.append("- Batata palha (1.00 €)\n");
+        total += 1.00;
+    }
+    if (CheckBoxextra.isSelected()) {
+        resumoPedido.append("- Arroz Extra (4.00 €)\n");
+        total += 4.00;
+    }
+    if (CheckBoxbata.isSelected()) {
+        resumoPedido.append("- Batata (6.00 €)\n");
+        total += 6.00;
+    }
+    if (CheckBoxsala.isSelected()) {
+        resumoPedido.append("- Salada (3.00 €)\n");
+        total += 3.00;
+    }
+    if (CheckBoxcoca.isSelected()) { 
+        resumoPedido.append("- Coca-cola (2.50 €)\n");
+        total += 2.50;
+    }
+    if (CheckBoxagua.isSelected()) { 
+        resumoPedido.append("- Água (1.20 €)\n");
+        total += 1.20;
+    }
+    if (CheckBoxguarana.isSelected()) { 
+        resumoPedido.append("- Guaraná (2.50 €)\n");
+        total += 2.50;
+    }
+    if (CheckBoxpedras.isSelected()) { 
+        resumoPedido.append("- Água das Pedras Limão (2.00 €)\n");
+        total += 2.00;
+    }
+
+    // 
+    if (resumoPedido.length() == 0) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Por favor, selecione pelo menos um item antes de prosseguir.");
+        return;
+    }
+
+    
+    Textresumo.setText("=== SEU PEDIDO ===\n" + resumoPedido.toString() + "\nTotal: " + total + " €");
+
+    int resposta = javax.swing.JOptionPane.showConfirmDialog(
+        this, 
+        "Confirma este pedido para pagamento?\n\n" + resumoPedido.toString() + "\nTotal a Pagar: " + total + " €", 
+        "Confirmar Pedido", 
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+
+
+    }//GEN-LAST:event_ButtonpagaActionPerformed
+
+    private void CheckBoxcocaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxcocaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckBoxcocaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,17 +454,25 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buttondele;
+    private javax.swing.JButton Buttonpaga;
+    private javax.swing.JCheckBoxMenuItem CheckBoxagua;
     private javax.swing.JCheckBoxMenuItem CheckBoxbaca;
     private javax.swing.JCheckBoxMenuItem CheckBoxbata;
+    private javax.swing.JCheckBoxMenuItem CheckBoxcoca;
     private javax.swing.JCheckBoxMenuItem CheckBoxextra;
+    private javax.swing.JCheckBoxMenuItem CheckBoxguarana;
+    private javax.swing.JCheckBoxMenuItem CheckBoxnenhu;
+    private javax.swing.JCheckBoxMenuItem CheckBoxpedras;
     private javax.swing.JCheckBoxMenuItem CheckBoxsala;
     private javax.swing.JCheckBoxMenuItem CheckBoxsopa;
     private javax.swing.JCheckBoxMenuItem CheckBoxstrogo;
+    private javax.swing.JCheckBoxMenuItem Checkbatapalha;
+    private javax.swing.JTextArea Textresumo;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -247,10 +495,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenu jMenucarda;
-    private javax.swing.JMenu jMenufinali;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

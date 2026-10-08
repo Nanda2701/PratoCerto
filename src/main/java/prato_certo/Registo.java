@@ -24,6 +24,7 @@ public class Registo extends javax.swing.JFrame{
      */
     public Registo() {
         initComponents();
+      getContentPane().setBackground(new java.awt.Color(236, 232, 212));
     }
 
     /**
