@@ -53,14 +53,19 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar5 = new javax.swing.JMenuBar();
         jMenu10 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
+        jPopupMenu3 = new javax.swing.JPopupMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenucarda = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
-        jMenu13 = new javax.swing.JMenu();
+        jMenucarda = new javax.swing.JMenu();
+        CheckBoxstrogo = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxbaca = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxsopa = new javax.swing.JCheckBoxMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxextra = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxbata = new javax.swing.JCheckBoxMenuItem();
+        CheckBoxsala = new javax.swing.JCheckBoxMenuItem();
+        jMenufinali = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -115,29 +120,49 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jMenu12.setText("Cliente");
+        jMenuBar1.add(jMenu12);
+
         jMenucarda.setText("Cardapio");
 
-        jMenuItem8.setText("Strogonoff");
-        jMenuItem8.addActionListener(this::jMenuItem8ActionPerformed);
-        jMenucarda.add(jMenuItem8);
+        CheckBoxstrogo.setSelected(true);
+        CheckBoxstrogo.setText("Strogonoff");
+        CheckBoxstrogo.addActionListener(this::CheckBoxstrogoActionPerformed);
+        jMenucarda.add(CheckBoxstrogo);
 
-        jMenuItem6.setText("Bacalhau");
-        jMenuItem6.addActionListener(this::jMenuItem6ActionPerformed);
-        jMenucarda.add(jMenuItem6);
+        CheckBoxbaca.setSelected(true);
+        CheckBoxbaca.setText("Bacalhau");
+        jMenucarda.add(CheckBoxbaca);
 
-        jMenuItem5.setText("Sopa");
-        jMenucarda.add(jMenuItem5);
+        CheckBoxsopa.setSelected(true);
+        CheckBoxsopa.setText("Sopa");
+        jMenucarda.add(CheckBoxsopa);
 
         jMenuBar1.add(jMenucarda);
 
         jMenu4.setText("Adicionar");
+
+        jCheckBoxMenuItem5.setSelected(true);
+        jCheckBoxMenuItem5.setText("Batata palha");
+        jMenu4.add(jCheckBoxMenuItem5);
+
+        CheckBoxextra.setSelected(true);
+        CheckBoxextra.setText("Arroz Extra");
+        CheckBoxextra.addActionListener(this::CheckBoxextraActionPerformed);
+        jMenu4.add(CheckBoxextra);
+
+        CheckBoxbata.setSelected(true);
+        CheckBoxbata.setText("Batata");
+        jMenu4.add(CheckBoxbata);
+
+        CheckBoxsala.setSelected(true);
+        CheckBoxsala.setText("Salada");
+        jMenu4.add(CheckBoxsala);
+
         jMenuBar1.add(jMenu4);
 
-        jMenu12.setText("Finalizar");
-        jMenuBar1.add(jMenu12);
-
-        jMenu13.setText("Cancelar");
-        jMenuBar1.add(jMenu13);
+        jMenufinali.setText("Finalizar");
+        jMenuBar1.add(jMenufinali);
 
         setJMenuBar(jMenuBar1);
 
@@ -155,13 +180,13 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void CheckBoxstrogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxstrogoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_CheckBoxstrogoActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void CheckBoxextraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxextraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_CheckBoxextraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,15 +214,21 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem CheckBoxbaca;
+    private javax.swing.JCheckBoxMenuItem CheckBoxbata;
+    private javax.swing.JCheckBoxMenuItem CheckBoxextra;
+    private javax.swing.JCheckBoxMenuItem CheckBoxsala;
+    private javax.swing.JCheckBoxMenuItem CheckBoxsopa;
+    private javax.swing.JCheckBoxMenuItem CheckBoxstrogo;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu13;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -215,12 +246,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenu jMenucarda;
+    private javax.swing.JMenu jMenufinali;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
+    private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

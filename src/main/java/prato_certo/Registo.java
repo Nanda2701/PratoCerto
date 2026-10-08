@@ -1,14 +1,21 @@
+package prato_certo;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package prato_certo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author fernanda
  */
-public class Registo extends javax.swing.JFrame {
+public class Registo extends javax.swing.JFrame{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Registo.class.getName());
 
@@ -29,17 +36,17 @@ public class Registo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        Labelnome = new javax.swing.JLabel();
+        textnome = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFinome = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         jLabeltelef = new javax.swing.JLabel();
-        jTextFitefone = new javax.swing.JTextField();
+        textefone = new javax.swing.JTextField();
         jLabelmorada = new javax.swing.JLabel();
         jLabelsenha = new javax.swing.JLabel();
-        jTextFimorada = new javax.swing.JTextField();
-        jTextFisenha = new javax.swing.JTextField();
-        jButtonsalvar = new javax.swing.JButton();
-        jButtoneliminar = new javax.swing.JButton();
+        textmorada = new javax.swing.JTextField();
+        passwordField = new javax.swing.JTextField();
+        btnsalvar = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,9 +54,11 @@ public class Registo extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NOVO REGISTO ");
 
-        Labelnome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Labelnome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Labelnome.setText("Nome:");
+        textnome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        textnome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textnome.setText("Nome:");
+
+        txtNome.addActionListener(this::txtNomeActionPerformed);
 
         jLabeltelef.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabeltelef.setText("Telefone:");
@@ -60,12 +69,13 @@ public class Registo extends javax.swing.JFrame {
         jLabelsenha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelsenha.setText("Senha:");
 
-        jButtonsalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButtonsalvar.setText("Salvar");
-        jButtonsalvar.addActionListener(this::jButtonsalvarActionPerformed);
+        btnsalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnsalvar.setText("Salvar");
+        btnsalvar.addActionListener(this::btnsalvarActionPerformed);
 
-        jButtoneliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButtoneliminar.setText("Eliminar");
+        btneliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btneliminar.setText("Eliminar");
+        btneliminar.addActionListener(this::btneliminarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,29 +90,27 @@ public class Registo extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Labelnome, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabeltelef, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabelsenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabelmorada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabeltelef, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jLabelsenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabelmorada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textnome, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFinome)
-                                    .addComponent(jTextFitefone)
-                                    .addComponent(jTextFimorada)
-                                    .addComponent(jTextFisenha, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                                    .addComponent(txtNome)
+                                    .addComponent(textefone)
+                                    .addComponent(textmorada)
+                                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
                                 .addGap(40, 40, 40))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(jButtonsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtoneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(177, 177, 177)
@@ -119,37 +127,124 @@ public class Registo extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFinome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Labelnome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textnome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabeltelef)
-                            .addComponent(jTextFitefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelmorada)
-                            .addComponent(jTextFimorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textmorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelsenha)
-                    .addComponent(jTextFisenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtoneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnsalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(72, 72, 72))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonsalvarActionPerformed
+    private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
+    String nome = txtNome.getText();
+    String telefone = textefone.getText();
+    String morada = textmorada.getText();
+    String senha = passwordField.getText();
+
+    if (nome.trim().isEmpty() || senha.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, preencha pelo menos o Nome e a Senha.");
+        return;
+    }
+
+    String sql = "INSERT INTO utilizadores (nome, telefone, morada, senha) VALUES (?, ?, ?, ?)";
+
+    // 4. Estabelecer ligação através da classe LigaBD
+    try (Connection conexao = LigaBD.Ligacao()) {
+        if (conexao != null) {
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.setString(2, telefone);
+            stmt.setString(3, morada);
+            stmt.setString(4, senha);
+
+            int linhas = stmt.executeUpdate();
+            if (linhas > 0) {
+                JOptionPane.showMessageDialog(this, "Registo guardado com sucesso!");
+                
+                // Limpar os campos após salvar
+                txtNome.setText("");
+                textefone.setText("");
+                textmorada.setText("");
+                passwordField.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro: Não foi possível conectar à base de dados.");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao guardar no MySQL: " + e.getMessage());
+        e.printStackTrace();
+    }
+    
+    // TODO add your handling code here:
+    }//GEN-LAST:event_btnsalvarActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+     String telefone = textefone.getText();
+
+    if (telefone.trim().isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(null, "Introduza o Telefone do registo que deseja eliminar.");
+        return;
+    }
+
+    int confirmacao = javax.swing.JOptionPane.showConfirmDialog(
+        null, 
+        "Tem a certeza de que deseja eliminar o registo com o telefone " + telefone + "?",
+        "Confirmar Eliminação",
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+
+        if (confirmacao == javax.swing.JOptionPane.YES_OPTION) {
+            String sql = "DELETE FROM registos WHERE telefone = ?";
+
+            try (java.sql.Connection conexao = LigaBD.Ligacao()) {
+                if (conexao != null) {
+                    java.sql.PreparedStatement stmt = conexao.prepareStatement(sql);
+                    stmt.setString(1, telefone);
+
+                    int linhasAfetadas = stmt.executeUpdate();
+                    if (linhasAfetadas > 0) {
+                        javax.swing.JOptionPane.showMessageDialog(null, "Registo eliminado com sucesso!");
+                        txtNome.setText("");
+                        textefone.setText("");
+                        textmorada.setText("");
+                        passwordField.setText("");
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(null, "Nenhum registo foi encontrado com este telefone.");
+                    }
+                }
+            } catch (java.sql.SQLException e) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Erro ao eliminar no MySQL: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+   
+     
+      // TODO add your handling code here:
+    }//GEN-LAST:event_btneliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,23 +266,24 @@ public class Registo extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+    
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Registo().setVisible(true));
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Labelnome;
-    private javax.swing.JButton jButtoneliminar;
-    private javax.swing.JButton jButtonsalvar;
+    private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btnsalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelmorada;
     private javax.swing.JLabel jLabelsenha;
     private javax.swing.JLabel jLabeltelef;
-    private javax.swing.JTextField jTextFimorada;
-    private javax.swing.JTextField jTextFinome;
-    private javax.swing.JTextField jTextFisenha;
-    private javax.swing.JTextField jTextFitefone;
+    private javax.swing.JTextField passwordField;
+    private javax.swing.JTextField textefone;
+    private javax.swing.JTextField textmorada;
+    private javax.swing.JLabel textnome;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

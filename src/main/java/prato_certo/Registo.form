@@ -33,36 +33,33 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="Labelnome" min="-2" pref="79" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabeltelef" min="-2" pref="79" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jLabelsenha" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabelmorada" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="jLabeltelef" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabelsenha" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabelmorada" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="textnome" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFinome" max="32767" attributes="0"/>
-                                  <Component id="jTextFitefone" max="32767" attributes="0"/>
-                                  <Component id="jTextFimorada" max="32767" attributes="0"/>
-                                  <Component id="jTextFisenha" pref="185" max="32767" attributes="0"/>
+                                  <Component id="txtNome" max="32767" attributes="0"/>
+                                  <Component id="textefone" max="32767" attributes="0"/>
+                                  <Component id="textmorada" max="32767" attributes="0"/>
+                                  <Component id="passwordField" pref="185" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="jButtonsalvar" min="-2" pref="89" max="-2" attributes="0"/>
+                              <Component id="btnsalvar" min="-2" pref="89" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButtoneliminar" min="-2" pref="93" max="-2" attributes="0"/>
+                              <Component id="btneliminar" min="-2" pref="93" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -86,13 +83,13 @@
                       <Component id="jLabel1" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFinome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Labelnome" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textnome" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabeltelef" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFitefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textefone" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
@@ -100,7 +97,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelmorada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFimorada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textmorada" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -109,12 +106,12 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelsenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFisenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="37" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonsalvar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jButtoneliminar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="btnsalvar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="btneliminar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
           </Group>
@@ -131,7 +128,7 @@
         <Property name="text" type="java.lang.String" value="NOVO REGISTO "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Labelnome">
+    <Component class="javax.swing.JLabel" name="textnome">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
@@ -142,7 +139,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFinome">
+    <Component class="javax.swing.JTextField" name="txtNome">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabeltelef">
       <Properties>
@@ -152,7 +152,7 @@
         <Property name="text" type="java.lang.String" value="Telefone:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFitefone">
+    <Component class="javax.swing.JTextField" name="textefone">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelmorada">
       <Properties>
@@ -170,11 +170,11 @@
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFimorada">
+    <Component class="javax.swing.JTextField" name="textmorada">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFisenha">
+    <Component class="javax.swing.JTextField" name="passwordField">
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonsalvar">
+    <Component class="javax.swing.JButton" name="btnsalvar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
@@ -182,16 +182,19 @@
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonsalvarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnsalvarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtoneliminar">
+    <Component class="javax.swing.JButton" name="btneliminar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btneliminarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
