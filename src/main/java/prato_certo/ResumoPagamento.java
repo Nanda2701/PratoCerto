@@ -9,7 +9,8 @@ package prato_certo;
  * @author liand
  */
 public class ResumoPagamento extends javax.swing.JFrame {
-    
+    public static String pedidoFinal = "";
+    public static double valorTotalFinal = 0.0;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ResumoPagamento.class.getName());
 
     /**
@@ -17,9 +18,7 @@ public class ResumoPagamento extends javax.swing.JFrame {
      */
     public ResumoPagamento() {
         initComponents();
-        carregarDadosNaTabela(); // Adicione esta linha aqui!
-
-
+        carregarResumoNaTela();
     }
 
     /**
@@ -35,7 +34,6 @@ public class ResumoPagamento extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaItens = new javax.swing.JTable();
-        lblSubtotal = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
         btnCartao = new javax.swing.JButton();
         btnMBWAY = new javax.swing.JButton();
@@ -43,8 +41,9 @@ public class ResumoPagamento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(28, 75, 130));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Prato Certo");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -63,8 +62,6 @@ public class ResumoPagamento extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tabelaItens);
-
-        lblSubtotal.setText("Subtotal R$: 0,00");
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTotal.setText("Total R$: 0,00");
@@ -92,44 +89,42 @@ public class ResumoPagamento extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(120, 120, 120))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(btnCartao)
+                .addGap(46, 46, 46)
+                .addComponent(btnMBWAY)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDinheiro)
+                .addGap(44, 44, 44))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btnCartao)
-                        .addGap(48, 48, 48)
-                        .addComponent(btnMBWAY)
-                        .addGap(51, 51, 51)
-                        .addComponent(btnDinheiro)))
-                .addGap(111, 111, 111))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(lblTotal)
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCartao)
                     .addComponent(btnMBWAY)
@@ -187,68 +182,61 @@ public class ResumoPagamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblSubtotal;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tabelaItens;
     // End of variables declaration//GEN-END:variables
 // Método que atualiza o status de pagamento no XAMPP
+    
 private void atualizarFormaPagamentoNoBanco(String forma) {
-    // Configurações da sua conexão XAMPP
-    String url = "jdbc:mysql://localhost:3306/restaurante_db";
-    String usuario = "root";
-    String senha = "";
+    String sql = "INSERT INTO pagamentos (pedido, total, metodo_pagamento) VALUES (?, ?, ?)";
     
-    // Altera os pedidos pendentes para a forma escolhida
-    String sqlUpdate = "UPDATE pedidos SET forma_pagamento = ? WHERE forma_pagamento = 'Pendente' OR forma_pagamento IS NULL";
-
-    try (java.sql.Connection conn = java.sql.DriverManager.getConnection(url, usuario, senha);
-         java.sql.PreparedStatement pstmt = conn.prepareStatement(sqlUpdate)) {
-
-        pstmt.setString(1, forma);
-        int linhasAfetadas = pstmt.executeUpdate();
-
-        if (linhasAfetadas > 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Pagamento em (" + forma.toUpperCase() + ") registrado com sucesso!");
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Nenhum pedido pendente encontrado para atualizar.");
+    try (java.sql.Connection conn = LigaBD.Ligacao();
+         java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+        stmt.setString(1, pedidoFinal);
+        stmt.setDouble(2, valorTotalFinal);
+        stmt.setString(3, forma);
+        
+        stmt.executeUpdate();
+        
+        javax.swing.JOptionPane.showMessageDialog(this, "Pagamento em (" + forma.toUpperCase() + ") registado com sucesso!");
+        
+        // Voltar ao Menu ou fechar
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
+        
+        } catch (java.sql.SQLException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Erro ao gravar pagamento: " + e.getMessage());
         }
-
-    } catch (java.sql.SQLException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Falha ao gravar no XAMPP: " + e.getMessage());
-    }
-}
-
-// Método opcional para buscar os dados do XAMPP e preencher a tabela visualmente
-public void carregarDadosNaTabela() {
-    String url = "jdbc:mysql://localhost:3306/restaurante_db";
-    String usuario = "root";
-    String senha = "";
     
-    javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tabelaItens.getModel();
-    modelo.setRowCount(0); // Limpa linhas antigas da tela
-    double somaTotal = 0;
-
-    try (java.sql.Connection conn = java.sql.DriverManager.getConnection(url, usuario, senha);
-         java.sql.Statement stmt = conn.createStatement();
-         java.sql.ResultSet rs = stmt.executeQuery("SELECT produto_qtd, preco_unitario, valor_total FROM pedidos")) {
-
-        while (rs.next()) {
-            String produto = rs.getString("produto_qtd");
-            double preco = rs.getDouble("preco_unitario");
-            double total = rs.getDouble("valor_total");
-
-            modelo.addRow(new Object[]{produto, "R$ " + String.format("%.2f", preco), "R$ " + String.format("%.2f", total)});
-            somaTotal += total;
-        }
-
-        // Atualiza os labels com o valor correto calculado do banco
-        lblSubtotal.setText("R$ " + String.format("%.2f", somaTotal));
-        lblTotal.setText("R$ " + String.format("%.2f", somaTotal));
-
-    } catch (java.sql.SQLException e) {
-        System.out.println("Erro ao carregar tabela: " + e.getMessage());
+    
     }
-}
+private void carregarResumoNaTela() {
+        // Atualiza o valor total no label
+        if (lblTotal != null) {
+            lblTotal.setText("R$ " + String.format("%.2f", valorTotalFinal));
+        }
+        
+        // Preenche a tabela com os itens que vieram do Menu
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tabelaItens.getModel();
+        modelo.setRowCount(0); // Limpa a tabela antes de preencher
+        
+        if (pedidoFinal != null && !pedidoFinal.isEmpty()) {
+            String[] linhas = pedidoFinal.split("\n");
+            for (String linha : linhas) {
+                if (!linha.trim().isEmpty()) {
+                    // Adiciona cada item na tabela visual
+                    modelo.addRow(new Object[]{linha, "", ""});
+                }
+                
+            }
+            
+        } 
+        
+    }
 
 }
+
+
 

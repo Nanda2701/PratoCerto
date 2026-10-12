@@ -180,6 +180,10 @@ public class Registo extends javax.swing.JFrame{
                 textefone.setText("");
                 textmorada.setText("");
                 passwordField.setText("");
+                
+                viewlogin telaLogin = new viewlogin();
+                telaLogin.setVisible(true);
+                this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Erro: Não foi possível conectar à base de dados.");

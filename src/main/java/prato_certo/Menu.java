@@ -132,11 +132,15 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Buttonpaga.setBackground(new java.awt.Color(0, 153, 255));
+        Buttonpaga.setBackground(new java.awt.Color(0, 0, 102));
+        Buttonpaga.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Buttonpaga.setForeground(new java.awt.Color(255, 255, 255));
         Buttonpaga.setText("Pagar");
         Buttonpaga.addActionListener(this::ButtonpagaActionPerformed);
 
-        Buttondele.setBackground(new java.awt.Color(255, 204, 153));
+        Buttondele.setBackground(new java.awt.Color(255, 0, 0));
+        Buttondele.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Buttondele.setForeground(new java.awt.Color(255, 255, 255));
         Buttondele.setText("Deletar pedido");
         Buttondele.addActionListener(this::ButtondeleActionPerformed);
 
@@ -230,7 +234,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -367,6 +371,7 @@ private void atualizarResumo() {
     }//GEN-LAST:event_ButtondeleActionPerformed
 
     private void ButtonpagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonpagaActionPerformed
+
     StringBuilder resumoPedido = new StringBuilder();
     double total = 0.0;
 
@@ -428,7 +433,12 @@ private void atualizarResumo() {
         "Confirmar Pedido", 
         javax.swing.JOptionPane.YES_NO_OPTION
     );
-    
+    ResumoPagamento.pedidoFinal = Textresumo.getText();
+    ResumoPagamento.valorTotalFinal = total; 
+
+    ResumoPagamento telaResumo = new ResumoPagamento();
+    telaResumo.setVisible(true);
+    this.dispose();
     
     }//GEN-LAST:event_ButtonpagaActionPerformed
 
