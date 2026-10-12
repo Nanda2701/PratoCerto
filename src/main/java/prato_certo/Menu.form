@@ -204,6 +204,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBoxsopaActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nenhum"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu4">
@@ -217,7 +222,6 @@
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="Checkbatapalha">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Batata palha"/>
-                <Property name="horizontalAlignment" type="int" value="11"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckbatapalhaActionPerformed"/>
@@ -247,6 +251,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBoxsalaActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="N&#xe3;o, Obrigada!"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu12">
@@ -269,20 +278,29 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#xc1;gua"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBoxaguaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="CheckBoxguarana">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guaran&#xe1;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBoxguaranaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="CheckBoxpedras">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#xc1;gua das Pedras Limao"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBoxpedrasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="CheckBoxnenhu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nenhum"/>
+                <Property name="text" type="java.lang.String" value="N&#xe3;o, Obrigada!"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -346,7 +364,7 @@
     <Component class="javax.swing.JButton" name="Buttonpaga">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="ff" red="99" type="rgb"/>
+          <Color blue="ff" green="99" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pagar"/>
       </Properties>
@@ -357,7 +375,7 @@
     <Component class="javax.swing.JButton" name="Buttondele">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="ff" type="rgb"/>
+          <Color blue="99" green="cc" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Deletar pedido"/>
       </Properties>
@@ -374,12 +392,9 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="Textresumo">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
+              <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="rows" type="int" value="2"/>
           </Properties>
